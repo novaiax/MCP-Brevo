@@ -21,10 +21,7 @@ DEFAULT_SENDER_NAME = os.environ.get("DEFAULT_SENDER_NAME", "Yann Service")
 BREVO_BASE = "https://api.brevo.com/v3"
 
 # ── MCP Server ───────────────────────────────────────────────────────────────
-mcp = FastMCP(
-    "Brevo",
-    description="MCP server pour interagir avec Brevo : envoi d'emails transactionnels, gestion des contacts, statistiques.",
-)
+mcp = FastMCP("Brevo")
 
 
 def _headers() -> dict:

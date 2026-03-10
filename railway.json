@@ -5,7 +5,6 @@
   },
   "deploy": {
     "startCommand": "python server.py",
-    "healthcheckPath": "/sse",
     "restartPolicyType": "ON_FAILURE",
     "restartPolicyMaxRetries": 10
   }

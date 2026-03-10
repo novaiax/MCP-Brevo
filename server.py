@@ -515,6 +515,10 @@ async def get_account_info() -> dict:
 
 # ── Entrypoint ───────────────────────────────────────────────────────────────
 if __name__ == "__main__":
+    import uvicorn
+
     port = int(os.environ.get("PORT", 8000))
     logger.info(f"Starting MCP Brevo server on port {port} (SSE transport)")
-    mcp.run(transport="sse", host="0.0.0.0", port=port)
+
+    app = mcp.sse_app()
+    uvicorn.run(app, host="0.0.0.0", port=port)

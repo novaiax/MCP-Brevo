@@ -7,6 +7,9 @@ import os
 import logging
 from datetime import datetime, timedelta
 
+# Disable MCP transport security for remote deployment (Railway proxy)
+os.environ.setdefault("MCP_TRANSPORT_SECURITY", "none")
+
 import httpx
 from mcp.server.fastmcp import FastMCP
 

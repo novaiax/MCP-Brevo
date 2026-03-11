@@ -7,11 +7,9 @@ import os
 import logging
 from datetime import datetime, timedelta
 
-# Disable MCP transport security for remote deployment (Railway proxy)
-os.environ.setdefault("MCP_TRANSPORT_SECURITY", "none")
-
 import httpx
 from mcp.server.fastmcp import FastMCP
+from mcp.server.transport_security import TransportSecuritySettings
 
 # ── Logging ──────────────────────────────────────────────────────────────────
 logging.basicConfig(level=logging.INFO)
@@ -24,7 +22,12 @@ DEFAULT_SENDER_NAME = os.environ.get("DEFAULT_SENDER_NAME", "Yann Service")
 BREVO_BASE = "https://api.brevo.com/v3"
 
 # ── MCP Server ───────────────────────────────────────────────────────────────
-mcp = FastMCP("Brevo")
+mcp = FastMCP(
+    "Brevo",
+    transport_security=TransportSecuritySettings(
+        enable_dns_rebinding_protection=False,
+    ),
+)
 
 
 def _headers() -> dict:
